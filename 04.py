@@ -1,10 +1,23 @@
 import requests
 from pprint import pprint
 
-
 def search_movie(title):
     pass
     # 여기에 코드를 작성합니다.
+    URL = 'https://api.themoviedb.org/3'
+    path = '/search/movie'
+    params = {
+        'api_key' : 'b4ddf663645312b787e1c5de3538d0f7',
+        'language' : 'ko-KR',
+        'region' : 'KR'
+        }
+    res = requests.get(URL+path,params=params).json()
+    response = res.get('results')
+    l = []
+    for a in response:
+        b = a['title']
+        l.append(b)
+    return (title)
 
 
 # 아래의 코드는 수정하지 않습니다.

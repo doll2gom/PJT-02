@@ -5,7 +5,27 @@ from pprint import pprint
 def ranking():
     pass
     # 여기에 코드를 작성합니다.
-
+    URL = 'https://api.themoviedb.org/3'
+    path = '/movie/popular'
+    params = {
+        'api_key' : 'b4ddf663645312b787e1c5de3538d0f7',
+        'language' : 'ko-KR',
+        'region' : 'KR'
+    }
+    res = requests.get(URL+path,params=params).json()
+    response = res.get('results')
+    l = []
+    dict =[]
+    for a in response:
+      l.append(a['vote_average']) if float(a['vote_average']) not in l else False
+    sl = sorted(l)
+    sl.reverse()
+    l5 = sl[0:5]
+    for b in l5:
+      for c in response:
+        if float(c['vote_average']) == b:
+          dict.append(c)
+    return dict
 
 # 아래의 코드는 수정하지 않습니다.
 if __name__ == '__main__':
@@ -22,9 +42,9 @@ if __name__ == '__main__':
       'original_language': 'en',
       'original_title': 'Top Gun: Maverick',
       'overview': '최고의 파일럿이자 전설적인 인물 매버릭은 자신이 졸업한 훈련학교 교관으로 발탁된다. 그의 명성을 모르던 팀원들은 '
-                  '매버릭의 지시를 무시하지만 실전을 방불케 하는 상공 훈련에서 눈으로 봐도 믿기 힘든 전설적인 조종 실력에 모두가 '
-                  '압도된다. 매버릭의 지휘 아래 견고한 팀워크를 쌓아가던 팀원들에게 국경을 뛰어넘는 위험한 임무가 주어지자 매버릭은 '
-                  '자신이 가르친 동료들과 함께 마지막이 될지 모를 하늘 위 비행에 나서는데…',
+      '매버릭의 지시를 무시하지만 실전을 방불케 하는 상공 훈련에서 눈으로 봐도 믿기 힘든 전설적인 조종 실력에 모두가 '
+      '압도된다. 매버릭의 지휘 아래 견고한 팀워크를 쌓아가던 팀원들에게 국경을 뛰어넘는 위험한 임무가 주어지자 매버릭은 '
+      '자신이 가르친 동료들과 함께 마지막이 될지 모를 하늘 위 비행에 나서는데…',
       'popularity': 911.817,
       'poster_path': '/jMLiTgCo0vXJuwMzZGoNOUPfuj7.jpg',
       'release_date': '2022-06-22',

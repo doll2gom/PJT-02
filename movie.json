@@ -1,34 +1,5 @@
-import requests
-from pprint import pprint
-
-
-def vote_average_movies():
-  pass 
-  # 여기에 코드를 작성합니다.  
-  URL = 'https://api.themoviedb.org/3'
-  path = '/movie/popular'
-  params = {
-      'api_key' : 'b4ddf663645312b787e1c5de3538d0f7',
-      'language' : 'ko-KR',
-      'region' : 'KR'
-      }
-  res = requests.get(URL+path,params=params).json()
-  response = res.get('results')
-  l = []
-  for a in response:
-    if float(a['vote_average']) >= 8:
-      l.append(a)
-  return l
-
-# 아래의 코드는 수정하지 않습니다.
-if __name__ == '__main__':
-  """
-  popular 영화목록중 vote_average가 8 이상인 영화목록 반환
-  (주의) popular 영화목록의 경우 시기에 따라 아래 예시 출력과 차이가 있을 수 있음
-  """
-  pprint(vote_average_movies())
-  """
-  [{'adult': False,
+"""
+[{  'adult': False,
     'backdrop_path': '/ocUp7DJBIc8VJgLEw1prcyK1dYv.jpg',
     'genre_ids': [28, 12, 878],
     'id': 634649,
@@ -45,6 +16,6 @@ if __name__ == '__main__':
     'video': False,
     'vote_average': 8.1,
     'vote_count': 13954},
-  ..생략..,
-  }]
-  """
+    ..생략..,
+    }]
+"""
